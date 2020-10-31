@@ -7,7 +7,7 @@ import { Token } from './token.model'
 const tokens: any = config.get('jwt.token')
 const secret: any = config.get('jwt.secret')
 
-const generateAccessToken = (userId) => {
+const generateAccessToken = (userId: string) => {
   const payload = {
     userId,
     type: tokens.access.type,
@@ -28,12 +28,9 @@ const generateRefreshToken = () => {
   }
 }
 
-const replaceDbRefreshToken = (tokenId, userId) => {
-  return Token.findOneAndRemove({ userId })
-    .exec()
-    .then(() => {
-      Token.create({ tokenId, userId })
-    })
+const replaceDbRefreshToken = async (tokenId: string, userId: string) => {
+  await Token.findOneAndRemove({ userId }).exec()
+  Token.create({ tokenId, userId })
 }
 
 module.exports = {
