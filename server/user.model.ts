@@ -15,7 +15,4 @@ const UserSchema = new Schema(
   { timestamps: true, autoIndex: true }
 )
 
-export const UserModel: Model<IUserModel> = model<IUserModel>(
-  'User',
-  UserSchema
-)
+export const User: Model<IUserModel> = model<IUserModel>('User', UserSchema)
