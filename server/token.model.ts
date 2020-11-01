@@ -5,13 +5,14 @@ export interface ITokenModel extends Document {
   userId: string;
 }
 
-export interface TokenAccess {
+export interface IToken {
   type: string;
   expiresIn: string;
 }
 
-export interface TokenInterface {
-  access: TokenAccess;
+export interface ITokensInterface {
+  access?: IToken;
+  refresh?: IToken;
 }
 
 const TokenSchema = new Schema(

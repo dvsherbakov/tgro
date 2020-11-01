@@ -8,7 +8,7 @@ import * as config from 'config'
 
 const secret: Secret = config.get('jwt.secret')
 
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
   const authHeader = req.get('Authorization')
   if (!authHeader) {
     res.status(401).json({ message: 'Token not provided!' })

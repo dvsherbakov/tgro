@@ -2,12 +2,12 @@ import { v4 as uuid } from 'uuid'
 import { sign } from 'jsonwebtoken'
 import * as config from 'config'
 
-import { Token, TokenInterface } from './token.model'
+import { Token, ITokensInterface } from './token.model'
 
-const tokens: any = config.get('jwt.token')
+const tokens: ITokensInterface = config.get('jwt.token')
 const secret: any = config.get('jwt.secret')
 
-const generateAccessToken = (userId: string) => {
+export const generateAccessToken = (userId: string) => {
   const payload = {
     userId,
     type: tokens.access.type,
@@ -16,7 +16,7 @@ const generateAccessToken = (userId: string) => {
   return sign(payload, secret, options)
 }
 
-const generateRefreshToken = () => {
+export const generateRefreshToken = () => {
   const payload = {
     id: uuid(),
     type: tokens.refresh.type,
@@ -28,13 +28,10 @@ const generateRefreshToken = () => {
   }
 }
 
-const replaceDbRefreshToken = async (tokenId: string, userId: string) => {
+export const replaceDbRefreshToken = async (
+  tokenId: string,
+  userId: string
+) => {
   await Token.findOneAndRemove({ userId }).exec()
   Token.create({ tokenId, userId })
-}
-
-module.exports = {
-  generateAccessToken,
-  generateRefreshToken,
-  replaceDbRefreshToken,
 }
