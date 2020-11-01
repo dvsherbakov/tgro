@@ -5,6 +5,15 @@ export interface ITokenModel extends Document {
   userId: string;
 }
 
+export interface TokenAccess {
+  type: string;
+  expiresIn: string;
+}
+
+export interface TokenInterface {
+  access: TokenAccess;
+}
+
 const TokenSchema = new Schema(
   {
     tokenId: { type: String, required: true },

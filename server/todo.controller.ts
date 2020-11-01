@@ -15,7 +15,7 @@ todoRoutes.get(
       const result = items.map((item: any) => {
         return { id: item._id, description: item.description }
       })
-      resp.json(result)
+      resp.status(200).json(result)
     } catch (err) {
       resp.status(500).json({ message: err.errmsg })
       console.error('Caught error', err)

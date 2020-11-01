@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 import { sign } from 'jsonwebtoken'
 import * as config from 'config'
 
-import { Token } from './token.model'
+import { Token, TokenInterface } from './token.model'
 
 const tokens: any = config.get('jwt.token')
 const secret: any = config.get('jwt.secret')
