@@ -26,3 +26,5 @@ userRoutes.get(
     })
   }
 )
+
+export { userRoutes }
