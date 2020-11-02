@@ -6,6 +6,7 @@ export interface ITokenModel extends Document {
 }
 
 export interface IToken {
+  id?: string;
   type: string;
   expiresIn: string;
 }

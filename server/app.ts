@@ -4,6 +4,8 @@ import * as bodyparser from 'body-parser'
 
 import { requestLoggerMiddleware } from './request.logger.middleware'
 import { todoRoutes } from './todo.controller'
+import { userRoutes } from './user.controller'
+
 const app = express()
 app.use(cors())
 app.use(bodyparser.json())

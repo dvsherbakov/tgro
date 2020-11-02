@@ -34,7 +34,7 @@ todoRoutes.post(
     const description = req.body['description']
     const item = new TodoModel({ description: description })
     await item.save()
-    resp.end()
+    resp.status(200).json({ message: 'sucsesfully added' })
   }
 )
 

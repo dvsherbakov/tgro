@@ -5,10 +5,9 @@ import {
   JsonWebTokenError,
   Secret,
 } from 'jsonwebtoken'
-import { Request, Response } from 'express'
-
-import { User } from './user.model'
-import { Token } from './token.model'
+import { Request, Response, Router } from 'express'
+import { User  } from './user.model'
+import { Token, IToken } from './token.model'
 import * as config from 'config'
 
 const secret: Secret = config.get('jwt.secret')
@@ -18,6 +17,8 @@ import {
   replaceDbRefreshToken,
 } from './auth.helper'
 
+const authRoutes = Router()
+
 const updateToken = async (userId: string) => {
   const accessToken = generateAccessToken(userId)
   const refreshToken = generateRefreshToken()
@@ -26,7 +27,7 @@ const updateToken = async (userId: string) => {
   return { accessToken, refreshToken: refreshToken.token, userId }
 }
 
-export const signIn = (req: Request, res: Response) => {
+authRoutes.post('/api/auth', (req: Request, res: Response) => {
   const { email, password } = req.body
   User.findOne({ email })
     .exec()
@@ -42,9 +43,9 @@ export const signIn = (req: Request, res: Response) => {
       }
     })
     .catch((err) => res.status(500).json({ message: err.message }))
-}
+})
 
-export const register = async (req: Request, res: Response) => {
+authRoutes.post('/auth/register', async (req: Request, res: Response) => {
   try {
     const { email, password, firstName, lastName } = req.body
     const candidate = await User.findOne({ email })
@@ -70,14 +71,14 @@ export const register = async (req: Request, res: Response) => {
       message: e.message,
     })
   }
-}
+})
 
-export const refreshTokens = (req: Request, res: Response) => {
+authRoutes.post('/api/refresh-tokens', (req: Request, res: Response) => {
   const { refreshToken } = req.body
-  let payload
+  let payload: IToken
 
   try {
-    payload = verify(refreshToken, secret)
+    payload = <IToken>verify(refreshToken, secret)
 
     if (payload.type !== 'refresh') {
       res.status(400).json({ message: 'Invalid token!', payload })
@@ -115,4 +116,6 @@ export const refreshTokens = (req: Request, res: Response) => {
         .status(400)
         .json({ message: `Ошибка обновления токена, ${err.message}` })
     )
-}
+})
+
+export { authRoutes }

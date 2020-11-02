@@ -7,7 +7,7 @@ const secret = config.get('jwt.secret')
 const userRoutes = express.Router()
 
 userRoutes.get(
-  '/users/id',
+  '/api/users/:id',
   async (
     req: express.Request,
     res: express.Response,
