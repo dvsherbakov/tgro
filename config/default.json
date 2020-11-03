@@ -1,7 +1,7 @@
 {
     "server":{
         "port":8080,
-        "mongoUri":"mongodb://localhost:27017",
+        "mongoUri":"mongodb://localhost:27017/tgro",
         "connection":false
     },
     "jwt": {

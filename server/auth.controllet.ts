@@ -47,7 +47,8 @@ authRoutes.post('/api/auth', (req: Request, res: Response) => {
 
 authRoutes.post('/auth/register', async (req: Request, res: Response) => {
   try {
-    const { email, password, firstName, lastName } = req.body
+    console.log('start register')
+    const { email, password, firstName, middleName, lastName } = req.body
     const candidate = await User.findOne({ email })
     if (candidate) {
       res.status(400).json({ message: 'Такой пользователь уже существует' })
@@ -58,6 +59,7 @@ authRoutes.post('/auth/register', async (req: Request, res: Response) => {
     const user = new User({
       email,
       password: hashedPassword,
+      middleName,
       firstName,
       lastName,
     })
