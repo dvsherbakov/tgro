@@ -4,7 +4,7 @@ import { TodoModel } from './todo.model'
 const todoRoutes = express.Router()
 
 todoRoutes.get(
-  '/todo',
+  '/api/todo',
   async (
     req: express.Request,
     resp: express.Response,
@@ -24,7 +24,7 @@ todoRoutes.get(
 )
 
 todoRoutes.post(
-  '/todo',
+  '/api/todo',
   async (
     req: express.Request,
     resp: express.Response,
@@ -39,7 +39,7 @@ todoRoutes.post(
 )
 
 todoRoutes.put(
-  '/todo/:id',
+  '/api/todo/:id',
   async (
     req: express.Request,
     resp: express.Response,
@@ -53,7 +53,7 @@ todoRoutes.put(
 )
 
 todoRoutes.delete(
-  '/todo/:id',
+  '/api/todo/:id',
   async (
     req: express.Request,
     resp: express.Response,

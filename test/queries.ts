@@ -18,7 +18,8 @@ const addTodo = async (description: string) => {
     return false
   }
 }
-//addTodo('Молоко верблюжье')
+
+// addTodo('Молоко верблюжье')
 
 const registerUser = async (body: IUserInterface) => {
   const response = await fetch('http://localhost:8080/auth/register', {
@@ -45,7 +46,7 @@ const registerUser = async (body: IUserInterface) => {
 
 const auth = async (email: string, password: string) => {
   const body = { email, password }
-  const response = await fetch('http://localhost:8080/todo', {
+  const response = await fetch('http://localhost:8080/api/auth', {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
@@ -54,9 +55,14 @@ const auth = async (email: string, password: string) => {
   })
   if (response.status === 200) {
     const json = await response.json()
-    console.log('response', json)
     return json
   } else return false
 }
+
+// auth('ds@tura.ru', 'gzaktpf6').then((json) => {
+//   const { accessToken, refreshToken, userId } = json
+
+//   console.log(accessToken, refreshToken, userId)
+// })
 
 //npx ts-node test/queries.ts

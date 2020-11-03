@@ -1,6 +1,6 @@
 import * as express from 'express'
 import * as config from 'config'
-import { User } from './user.model'
+import { User, IUserInterface } from './user.model'
 
 const secret = config.get('jwt.secret')
 
@@ -24,6 +24,29 @@ userRoutes.get(
       firstName: user.firstName,
       lastName: user.lastName,
     })
+  }
+)
+
+userRoutes.get(
+  '/api/users',
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    const users = await User.find({})
+    if (!users) {
+      res.status(500).json({ message: 'Users not found' })
+    }
+    const result = users.map((user) => {
+      return {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        middleName: user.middleName,
+      }
+    })
+    res.status(200).json(result)
   }
 )
 
