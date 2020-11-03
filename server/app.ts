@@ -14,5 +14,6 @@ app.use(bodyparser.json())
 app.use(requestLoggerMiddleware)
 app.use(todoRoutes)
 app.use(authRoutes)
+app.use(userRoutes)
 
 export { app }

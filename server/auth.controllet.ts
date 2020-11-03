@@ -47,7 +47,6 @@ authRoutes.post('/api/auth', (req: Request, res: Response) => {
 
 authRoutes.post('/auth/register', async (req: Request, res: Response) => {
   try {
-    console.log('start register')
     const { email, password, firstName, middleName, lastName } = req.body
     const candidate = await User.findOne({ email })
     if (candidate) {

@@ -15,6 +15,7 @@ server.on('listening', async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
   })
   mongoose.connection.on('open', () => {
     console.info('Connected to mongo...')
