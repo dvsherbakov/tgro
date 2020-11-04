@@ -36,13 +36,13 @@ const registerUser = async (body: IUserInterface) => {
   } else return false
 }
 
-// registerUser({
-//   email: 'ds@tura.ru',
-//   password: 'gzaktpf6',
-//   firstName: 'Дмитрий',
-//   middleName: 'Васильевич',
-//   lastName: 'Щербаков',
-// })
+ registerUser({
+   email: 'ds@tura.ru',
+   password: 'gzaktpf6',
+   firstName: 'Дмитрий',
+   middleName: 'Васильевич',
+   lastName: 'Щербаков',
+ })
 
 const auth = async (email: string, password: string) => {
   const body = { email, password }
