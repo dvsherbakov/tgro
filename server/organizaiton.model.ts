@@ -9,7 +9,7 @@ export interface IOrganizationInterface {
 export interface IOrganizationModel extends Document, IOrganizationInterface {}
 
 export const OrganizationSchema = new Schema({
-  name: String,
+  name: { type: String, unique: true },
   adress: AdressSchema,
 })
 

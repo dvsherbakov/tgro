@@ -36,17 +36,40 @@ const registerUser = async (body: IUserInterface) => {
   } else return false
 }
 
- registerUser({
-   email: 'ds@tura.ru',
-   password: 'gzaktpf6',
-   firstName: 'Дмитрий',
-   middleName: 'Васильевич',
-   lastName: 'Щербаков',
- })
+// registerUser({
+//   email: 'ds@tura.ru',
+//   password: 'gzaktpf6',
+//   firstName: 'Дмитрий',
+//   middleName: 'Васильевич',
+//   lastName: 'Щербаков',
+// })
 
 const auth = async (email: string, password: string) => {
   const body = { email, password }
   const response = await fetch('http://localhost:8080/api/auth', {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+  if (response.status === 200) {
+    const json = await response.json()
+    return json
+  } else return false
+}
+
+const addOrg = async () => {
+  const body = {
+    name: 'Тюменский государственный университет',
+    adress: {
+      city: 'Тюмень',
+      street: 'Ленина',
+      home: '25',
+      additional: 'Знания-сила.',
+    },
+  }
+  const response = await fetch('http://localhost:8080/api/org', {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
@@ -64,5 +87,9 @@ const auth = async (email: string, password: string) => {
 
 //   console.log(accessToken, refreshToken, userId)
 // })
+
+addOrg().then((json) => {
+  console.log(json)
+})
 
 //npx ts-node test/queries.ts

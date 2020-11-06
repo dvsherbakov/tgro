@@ -30,7 +30,7 @@ todoRoutes.post(
     resp: express.Response,
     next: express.NextFunction
   ) => {
-    console.log(req.body)
+    //console.log(req.body)
     const description = req.body['description']
     const item = new TodoModel({ description: description })
     await item.save()
