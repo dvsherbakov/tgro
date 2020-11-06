@@ -9,7 +9,7 @@ export interface IAdressInterface {
 
 export interface IAdressModel extends Document, IAdressInterface {}
 
-const AdressSchema = new Schema({
+export const AdressSchema = new Schema({
   city: { type: String, required: true },
   street: String,
   home: String,
