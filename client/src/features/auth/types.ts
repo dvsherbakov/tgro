@@ -1,11 +1,12 @@
 import { LOGIN_AUTH, LOGOUT_AUTH } from './actionTypes'
 
-interface LoginAction {
+export interface LoginAction {
   type: typeof LOGIN_AUTH
   email: string
+  isAuth: boolean
 }
 
-interface LogoutAction {
+export interface LogoutAction {
   type: typeof LOGOUT_AUTH
 }
 
