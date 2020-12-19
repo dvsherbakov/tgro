@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { Navbar } from './components/Navbar'
 import { About } from './pages/About'
+import { AuthPage } from './pages/AuthPage'
 import { Home } from './pages/Home'
 
 const App: React.FC = () => {
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <div className="container">
         <Switch>
           <Route path="/" component={Home} exact />
+          <Route path="/auth" component={AuthPage} />
           <Route path="/about" component={About} />
         </Switch>
       </div>

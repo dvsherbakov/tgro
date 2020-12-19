@@ -21,7 +21,9 @@ export interface LogoutAction {
 export type AuthActionTypes = LoginAction | LogoutAction | SetPasswdAction
 
 export interface AuthState {
-  email: string
-  passwd: string
-  isAuth: boolean
+  auth: {
+    email: string
+    passwd: string
+    isAuth: boolean
+  }
 }

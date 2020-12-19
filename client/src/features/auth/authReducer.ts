@@ -1,12 +1,7 @@
 import { EMAIL_AUTH, LOGIN_AUTH, LOGOUT_AUTH, PASSWD_AUTH } from './actionTypes'
-import {
-  AuthState,
-  SetEmailAction,
-  AuthActionTypes,
-  SetPasswdAction,
-} from './types'
+import { SetEmailAction, AuthActionTypes, SetPasswdAction } from './types'
 
-const initialState: AuthState = {
+const initialState = {
   email: '',
   passwd: '123',
   isAuth: false,
@@ -17,9 +12,9 @@ export default (state = initialState, action: AuthActionTypes) => {
     case LOGIN_AUTH:
       return { ...state, isAuth: true }
     case EMAIL_AUTH:
-      return { state, email: (action as SetEmailAction).email }
+      return { ...state, email: (<SetEmailAction>action).email }
     case PASSWD_AUTH:
-      return { ...state, passwd: (action as SetPasswdAction).passwd }
+      return { ...state, passwd: (<SetPasswdAction>action).passwd }
     case LOGOUT_AUTH:
       return { ...state, isAuth: false }
     default:
