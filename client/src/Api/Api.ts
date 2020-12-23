@@ -9,6 +9,7 @@ export interface IApiOptions {
 export default class Api {
   client: AxiosInstance
   token: string
+  userId: string
 
   constructor(options: IApiOptions) {
     const config: AxiosRequestConfig = {
@@ -19,5 +20,6 @@ export default class Api {
 
     this.client = options.client || axios.create()
     this.token = options.token || ''
+    this.userId = options.userId || ''
   }
 }
