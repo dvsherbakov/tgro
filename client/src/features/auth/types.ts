@@ -1,29 +1,53 @@
-import { EMAIL_AUTH, LOGIN_AUTH, LOGOUT_AUTH, PASSWD_AUTH } from './actionTypes'
+import {
+  EMAIL_AUTH,
+  FIRST_NAME_AUTH,
+  LAST_NAME_AUTH,
+  LOGIN_AUTH,
+  LOGOUT_AUTH,
+  PASSWD_AUTH,
+} from './actionTypes'
 
-export interface LoginAction {
+export type LoginAction = {
   type: typeof LOGIN_AUTH
 }
 
-export interface SetEmailAction {
+export type SetEmailAction = {
   type: typeof EMAIL_AUTH
-  email: string
+  payload: string
 }
 
-export interface SetPasswdAction {
+export type SetPasswdAction = {
   type: typeof PASSWD_AUTH
-  passwd: string
+  payload: string
 }
 
-export interface LogoutAction {
+export type SetFirstNameAction = {
+  type: typeof FIRST_NAME_AUTH
+  payload: string
+}
+
+export type SetLastNameAction = {
+  type: typeof LAST_NAME_AUTH
+  payload: string
+}
+
+export type LogoutAction = {
   type: typeof LOGOUT_AUTH
 }
 
-export type AuthActionTypes = LoginAction | LogoutAction | SetPasswdAction
+export type AuthActionTypes =
+  | LoginAction
+  | LogoutAction
+  | SetPasswdAction
+  | SetFirstNameAction
+  | SetLastNameAction
 
 export interface AuthState {
   auth: {
     email: string
     passwd: string
+    firstName: string
+    lastName: string
     isAuth: boolean
   }
 }

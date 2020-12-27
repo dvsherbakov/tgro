@@ -15,4 +15,6 @@ const store = createStore(
   /* preloadedState, */ devToolsEnhancer({})
 )
 
+export type RootStore = ReturnType<typeof rootReducer>
+
 export default store
