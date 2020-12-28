@@ -23,7 +23,7 @@ export function Register() {
         <input
           id="name_id"
           className="auth__input"
-          type="text"
+          type="email"
           placeholder=" "
           value={firstName}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {

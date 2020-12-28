@@ -15,7 +15,7 @@ export const AuthForm: FC = () => {
         <input
           id="input-1"
           className="auth__input"
-          type="text"
+          type="email"
           value={email}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             dispatch(emailAction(e.currentTarget.value))
