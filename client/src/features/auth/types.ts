@@ -5,6 +5,8 @@ import {
   LOGIN_AUTH,
   LOGOUT_AUTH,
   PASSWD_AUTH,
+  REGISTER_FAIL_AUTH,
+  REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
 
 export type LoginAction = {
@@ -51,3 +53,20 @@ export interface AuthState {
     isAuth: boolean
   }
 }
+
+export interface IRegisterThunk {
+  email: string
+  password: string
+  firstName: string
+  lastName: string
+}
+
+export type RegistarSuccessAction = {
+  type: typeof REGISTER_SUCCESS_AUTH
+}
+
+export type RegistarFailAction = {
+  type: typeof REGISTER_FAIL_AUTH
+}
+
+export type RegisterActionsType = RegistarSuccessAction | RegistarFailAction
