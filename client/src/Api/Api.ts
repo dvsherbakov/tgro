@@ -16,7 +16,7 @@ export default class Api {
     const startConfig: AxiosRequestConfig = {
       withCredentials: true,
       responseType: 'json',
-      baseURL: '/api/',
+      baseURL: 'api/',
     }
 
     this.client = options.client || axios.create(startConfig)
@@ -76,7 +76,7 @@ export default class Api {
     firstName,
     lastName,
   }: IRegisterRequestConfig) {
-    const { data } = await this.client.post('register', {
+    const { data } = await this.client.post('/register', {
       email,
       password,
       firstName,

@@ -39,5 +39,6 @@
     "@types/uuid": "^8.3.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.6"
-  }
+  },
+  "proxy": "http://localhost:3030"
 }

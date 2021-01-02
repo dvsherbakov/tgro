@@ -5,7 +5,7 @@ import {
   JsonWebTokenError,
   Secret,
 } from 'jsonwebtoken'
-import { Request, Response, Router } from 'express'
+import { Request, Response, Router, NextFunction } from 'express'
 import { User  } from './user.model'
 import { Token, IToken } from './token.model'
 import * as config from 'config'
@@ -45,7 +45,23 @@ authRoutes.post('/api/auth', (req: Request, res: Response) => {
     .catch((err) => res.status(500).json({ message: err.message }))
 })
 
-authRoutes.post('/auth/register', async (req: Request, res: Response) => {
+authRoutes.get(
+  '/api/register',
+  async (
+    req: Request,
+    resp: Response,
+    next: NextFunction
+  ) => {
+    try {
+      resp.status(200).json({message: 'Test passwd'})
+    } catch (err) {
+      resp.status(500).json({ message: err.errmsg })
+      console.error('Caught error', err)
+    }
+  }
+)
+
+authRoutes.post('/api/register', async (req: Request, res: Response) => {
   try {
     const { email, password, firstName, middleName, lastName } = req.body
     const candidate = await User.findOne({ email })

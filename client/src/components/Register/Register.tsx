@@ -17,9 +17,10 @@ export function Register() {
   const passwd = useSelector(selectors.getPasswd)
   const firstName = useSelector(selectors.getFirstName)
   const lastName = useSelector(selectors.getLastName)
+  const data = useSelector(selectors.getComplexAuthData)
 
   const handlerRegister = () => {
-    dispatch(registerThunk())
+    dispatch(registerThunk(data))
   }
 
   return (

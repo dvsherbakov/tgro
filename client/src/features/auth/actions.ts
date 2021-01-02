@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 import Api from '../../Api/Api'
-import { selectors } from '.'
 import {
   EMAIL_AUTH,
   FIRST_NAME_AUTH,
@@ -16,6 +14,7 @@ import {
   SetPasswdAction,
   RegisterActionsType,
   RegistarFailAction,
+  IRegisterThunk,
 } from './types'
 
 export const emailAction = (email: string): SetEmailAction => {
@@ -38,23 +37,15 @@ export const registerFailAction = (): RegistarFailAction => ({
   type: REGISTER_FAIL_AUTH,
 })
 
-export const registerThunk = () => async (
+export const registerThunk = (data: IRegisterThunk) => async (
   dispatch: Dispatch<RegisterActionsType>
 ) => {
   console.log('start dispath')
   try {
     const api = new Api()
-
-    const { email, passwd, firstName, lastName } = useSelector(
-      selectors.getComplexAuthData
-    )
-    const registerRes = await api.register({
-      email,
-      password: passwd,
-      firstName,
-      lastName,
-    })
-    console.log(registerRes)
+    console.log(data)
+    const resp = await api.register(data)
+    console.log(resp)
   } catch (e) {
     dispatch(registerFailAction())
   }
