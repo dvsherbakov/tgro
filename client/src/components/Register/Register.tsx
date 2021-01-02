@@ -5,6 +5,7 @@ import {
   firstNameAction,
   lastNameAction,
   passwdAction,
+  registerThunk,
 } from '../../features/auth/actions'
 import { selectors } from '../../features/auth'
 
@@ -16,6 +17,11 @@ export function Register() {
   const passwd = useSelector(selectors.getPasswd)
   const firstName = useSelector(selectors.getFirstName)
   const lastName = useSelector(selectors.getLastName)
+
+  const handlerRegister = () => {
+    dispatch(registerThunk())
+  }
+
   return (
     <div className="auth">
       <h4>Зарегистрируйтесь:</h4>
@@ -83,8 +89,8 @@ export function Register() {
         </label>
       </div>
 
-      <button type="submit" className="auth__button">
-        Войти
+      <button type="submit" className="auth__button" onClick={handlerRegister}>
+        Регистрация
       </button>
     </div>
   )

@@ -1,5 +1,6 @@
-import { combineReducers, createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { CounterReducer } from './features/counter'
 import { AuthReducer } from './features/auth'
 
@@ -11,8 +12,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-
-  /* preloadedState, */ devToolsEnhancer({})
+  composeWithDevTools(applyMiddleware(thunk))
 )
 
 export type RootStore = ReturnType<typeof rootReducer>

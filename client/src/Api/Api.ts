@@ -1,26 +1,25 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import {
-  IToken,
-  ITokensInterface,
-  IApiOptions,
-  IRegisterRequestConfig,
-} from './api.t'
+import { ITokensInterface, IApiOptions, IRegisterRequestConfig } from './api.t'
 
 export default class Api {
   client: AxiosInstance
+
   token: string | undefined
+
   userId: string | null
+
   refreshToken: string | undefined
+
   refreshRequest: AxiosResponse<ITokensInterface> | null
 
   constructor(options: IApiOptions = {}) {
-    const config: AxiosRequestConfig = {
+    const startConfig: AxiosRequestConfig = {
       withCredentials: true,
       responseType: 'json',
       baseURL: '/api/',
     }
 
-    this.client = options.client || axios.create()
+    this.client = options.client || axios.create(startConfig)
     this.token = options.token || undefined
     this.userId = options.userId || null
     this.refreshToken = options.refreshToken || undefined
