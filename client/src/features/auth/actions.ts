@@ -6,6 +6,7 @@ import {
   LAST_NAME_AUTH,
   PASSWD_AUTH,
   REGISTER_FAIL_AUTH,
+  REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
 import {
   SetEmailAction,
@@ -13,8 +14,9 @@ import {
   SetLastNameAction,
   SetPasswdAction,
   RegisterActionsType,
-  RegistarFailAction,
+  RegisterFailAction,
   IRegisterThunk,
+  RegisterSuccessAction,
 } from './types'
 
 export const emailAction = (email: string): SetEmailAction => {
@@ -33,19 +35,22 @@ export const lastNameAction = (payload: string): SetLastNameAction => {
   return { type: LAST_NAME_AUTH, payload }
 }
 
-export const registerFailAction = (): RegistarFailAction => ({
+export const registerFailAction = (): RegisterFailAction => ({
   type: REGISTER_FAIL_AUTH,
+})
+
+export const registerSuccessAction = (): RegisterSuccessAction => ({
+  type: REGISTER_SUCCESS_AUTH,
 })
 
 export const registerThunk = (data: IRegisterThunk) => async (
   dispatch: Dispatch<RegisterActionsType>
 ) => {
-  console.log('start dispath')
   try {
     const api = new Api()
-    console.log(data)
     const resp = await api.register(data)
-    console.log(resp)
+    if (resp && resp.message) dispatch(registerSuccessAction())
+    else dispatch(registerFailAction())
   } catch (e) {
     dispatch(registerFailAction())
   }

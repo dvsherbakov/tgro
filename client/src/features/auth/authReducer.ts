@@ -5,6 +5,8 @@ import {
   LOGIN_AUTH,
   LOGOUT_AUTH,
   PASSWD_AUTH,
+  REGISTER_FAIL_AUTH,
+  REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
 import {
   SetEmailAction,
@@ -20,6 +22,7 @@ export interface IDefaultAuthState {
   email: string
   passwd: string
   isAuth: boolean
+  isRegisterSuccess: boolean
 }
 
 const initialState: IDefaultAuthState = {
@@ -28,6 +31,7 @@ const initialState: IDefaultAuthState = {
   email: '',
   passwd: '',
   isAuth: false,
+  isRegisterSuccess: false,
 }
 
 function authReducer(
@@ -47,6 +51,10 @@ function authReducer(
       return { ...state, passwd: (<SetPasswdAction>action).payload }
     case LOGOUT_AUTH:
       return { ...state, isAuth: false }
+    case REGISTER_SUCCESS_AUTH:
+      return { ...state, isRegisterSuccess: true }
+    case REGISTER_FAIL_AUTH:
+      return { ...state, isRegisterSuccess: false }
     default:
       return state
   }

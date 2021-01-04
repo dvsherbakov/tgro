@@ -61,12 +61,12 @@ export interface IRegisterThunk {
   lastName: string
 }
 
-export type RegistarSuccessAction = {
-  type: typeof REGISTER_SUCCESS_AUTH
-}
-
-export type RegistarFailAction = {
+export type RegisterFailAction = {
   type: typeof REGISTER_FAIL_AUTH
 }
 
-export type RegisterActionsType = RegistarSuccessAction | RegistarFailAction
+export type RegisterSuccessAction = {
+  type: typeof REGISTER_SUCCESS_AUTH
+}
+
+export type RegisterActionsType = RegisterSuccessAction | RegisterFailAction

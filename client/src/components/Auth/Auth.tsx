@@ -8,6 +8,8 @@ export const AuthForm: FC = () => {
   const email = useSelector(selectors.getEmail)
   const passwd = useSelector(selectors.getPasswd)
 
+  const getAuthHandler = () => {}
+
   return (
     <div className="auth">
       <h4>Авторизуйтесь:</h4>
@@ -43,7 +45,7 @@ export const AuthForm: FC = () => {
         </label>
       </div>
 
-      <button type="submit" className="auth__button">
+      <button type="submit" className="auth__button" onClick={getAuthHandler}>
         Войти
       </button>
     </div>
