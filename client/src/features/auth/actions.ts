@@ -4,11 +4,13 @@ import {
   EMAIL_AUTH,
   FIRST_NAME_AUTH,
   LAST_NAME_AUTH,
+  LOGIN_AUTH,
   PASSWD_AUTH,
   REGISTER_FAIL_AUTH,
   REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
 import {
+  LoginAction,
   SetEmailAction,
   SetFirstNameAction,
   SetLastNameAction,
@@ -17,6 +19,8 @@ import {
   RegisterFailAction,
   IRegisterThunk,
   RegisterSuccessAction,
+  IAuthThunk,
+  AuthActionTypes,
 } from './types'
 
 export const emailAction = (email: string): SetEmailAction => {
@@ -43,6 +47,10 @@ export const registerSuccessAction = (): RegisterSuccessAction => ({
   type: REGISTER_SUCCESS_AUTH,
 })
 
+export const authFailAction = (): LoginAction => ({
+  type: LOGIN_AUTH,
+})
+
 export const registerThunk = (data: IRegisterThunk) => async (
   dispatch: Dispatch<RegisterActionsType>
 ) => {
@@ -53,5 +61,17 @@ export const registerThunk = (data: IRegisterThunk) => async (
     else dispatch(registerFailAction())
   } catch (e) {
     dispatch(registerFailAction())
+  }
+}
+
+export const authThunk = (data: IAuthThunk) => async (
+  dispatch: Dispatch<AuthActionTypes>
+) => {
+  try {
+    const api = new Api()
+    const resp = await api.login(data)
+    console.log(resp)
+  } catch (e) {
+    dispatch(authFailAction())
   }
 }

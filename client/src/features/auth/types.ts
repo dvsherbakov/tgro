@@ -61,6 +61,11 @@ export interface IRegisterThunk {
   lastName: string
 }
 
+export interface IAuthThunk {
+  email: string
+  password: string
+}
+
 export type RegisterFailAction = {
   type: typeof REGISTER_FAIL_AUTH
 }

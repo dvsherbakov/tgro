@@ -1,5 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { ITokensInterface, IApiOptions, IRegisterRequestConfig } from './api.t'
+import {
+  ITokensInterface,
+  IApiOptions,
+  IRegisterRequestConfig,
+  IAuthRequestConfig,
+} from './api.t'
 
 export default class Api {
   client: AxiosInstance
@@ -68,6 +73,19 @@ export default class Api {
         return this.client(newRequest)
       }
     )
+  }
+
+  async login({ email, password }: IAuthRequestConfig) {
+    const { data, status } = await this.client.post('/auth', {
+      email,
+      password,
+    })
+    console.log(data)
+    this.token = data.accessToken
+    this.refreshToken = data.refreshToken
+    this.userId = data.userId
+    // this.userInfo = this.getUserInfo(data.userId)
+    return status
   }
 
   async register({
