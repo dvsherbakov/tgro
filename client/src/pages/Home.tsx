@@ -1,11 +1,9 @@
-import React, { Fragment } from 'react'
-import Counter from '../components/counter/Counter'
+import React, { Fragment, FC } from 'react'
 
-export const Home: React.FC = () => {
+export const Home: FC = () => {
   return (
     <Fragment>
-      <h1>Redux + TypeScript</h1>
-      <Counter />
+      <h1>Home page</h1>
     </Fragment>
   )
 }

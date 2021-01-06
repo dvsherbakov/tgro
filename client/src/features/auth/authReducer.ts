@@ -1,5 +1,6 @@
 import {
   EMAIL_AUTH,
+  FAIL_AUTH,
   FIRST_NAME_AUTH,
   LAST_NAME_AUTH,
   LOGIN_AUTH,
@@ -50,6 +51,7 @@ function authReducer(
     case PASSWD_AUTH:
       return { ...state, passwd: (<SetPasswdAction>action).payload }
     case LOGOUT_AUTH:
+    case FAIL_AUTH:
       return { ...state, isAuth: false }
     case REGISTER_SUCCESS_AUTH:
       return { ...state, isRegisterSuccess: true }

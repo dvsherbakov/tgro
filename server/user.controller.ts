@@ -1,7 +1,7 @@
 import * as express from 'express'
 import * as config from 'config'
-import { User, IUserInterface } from './user.model'
-
+import { User } from './user.model'
+import AuthMiddleware from './auth.middleware'
 const secret = config.get('jwt.secret')
 
 const userRoutes = express.Router()
@@ -29,6 +29,7 @@ userRoutes.get(
 
 userRoutes.get(
   '/api/users',
+  AuthMiddleware,
   async (
     req: express.Request,
     res: express.Response,
