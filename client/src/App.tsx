@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Header } from './components/Header/Header'
 
 import { Navbar } from './components/Navbar'
 import { About } from './pages/About'
@@ -10,6 +11,7 @@ import RegisterPage from './pages/RegisterPage'
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Navbar />
       <div className="container">
         <Switch>

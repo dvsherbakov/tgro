@@ -4,6 +4,7 @@ import {
   EMAIL_AUTH,
   FIRST_NAME_AUTH,
   LAST_NAME_AUTH,
+  FAIL_AUTH,
   LOGIN_AUTH,
   PASSWD_AUTH,
   REGISTER_FAIL_AUTH,
@@ -11,6 +12,7 @@ import {
 } from './actionTypes'
 import {
   LoginAction,
+  LoginFailAuth,
   SetEmailAction,
   SetFirstNameAction,
   SetLastNameAction,
@@ -47,7 +49,11 @@ export const registerSuccessAction = (): RegisterSuccessAction => ({
   type: REGISTER_SUCCESS_AUTH,
 })
 
-export const authFailAction = (): LoginAction => ({
+export const authFailAction = (): LoginFailAuth => ({
+  type: FAIL_AUTH,
+})
+
+export const authSuccessAction = (): LoginAction => ({
   type: LOGIN_AUTH,
 })
 
@@ -70,7 +76,15 @@ export const authThunk = (data: IAuthThunk) => async (
   try {
     const api = new Api()
     const resp = await api.login(data)
-    console.log(resp)
+    if (resp === 200) {
+      localStorage.setItem(
+        'tokens',
+        JSON.stringify({ token: api.token, refresh: api.refreshToken })
+      )
+      dispatch(authSuccessAction())
+    } else {
+      dispatch(authFailAction())
+    }
   } catch (e) {
     dispatch(authFailAction())
   }

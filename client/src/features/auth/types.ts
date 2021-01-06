@@ -1,5 +1,6 @@
 import {
   EMAIL_AUTH,
+  FAIL_AUTH,
   FIRST_NAME_AUTH,
   LAST_NAME_AUTH,
   LOGIN_AUTH,
@@ -11,6 +12,10 @@ import {
 
 export type LoginAction = {
   type: typeof LOGIN_AUTH
+}
+
+export type LoginFailAuth = {
+  type: typeof FAIL_AUTH
 }
 
 export type SetEmailAction = {
@@ -39,6 +44,7 @@ export type LogoutAction = {
 
 export type AuthActionTypes =
   | LoginAction
+  | LoginFailAuth
   | LogoutAction
   | SetPasswdAction
   | SetFirstNameAction
