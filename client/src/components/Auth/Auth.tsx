@@ -1,14 +1,18 @@
 import React, { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { emailAction, passwdAction, selectors } from '../../features/auth'
+import { authThunk } from '../../features/auth/actions'
 import './auth.css'
 
 export const AuthForm: FC = () => {
   const dispatch = useDispatch()
   const email = useSelector(selectors.getEmail)
   const passwd = useSelector(selectors.getPasswd)
+  const data = useSelector(selectors.getCreditance)
 
-  const getAuthHandler = () => {}
+  const getAuthHandler = () => {
+    dispatch(authThunk(data))
+  }
 
   return (
     <div className="auth">
