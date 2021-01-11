@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { Header } from './components/Header/Header'
 import { selectors } from './features/auth'
 import { Navbar } from './components/Navbar/Navbar'
@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage'
 
 const App: FC = () => {
   const isAuth = useSelector(selectors.isAuthenticate)
+  const isRegisterSuccess = useSelector(selectors.isRegisterSuccess)
   return (
     <BrowserRouter>
       <Header />
@@ -23,6 +24,7 @@ const App: FC = () => {
             <Route path="/about" component={About} />
           </Switch>
         )}
+        {!isAuth && isRegisterSuccess && <Redirect to="/auth" />}
         {!isAuth && (
           <Switch>
             <Route path="/" component={AuthPage} exact />

@@ -57,6 +57,7 @@ export interface AuthState {
     firstName: string
     lastName: string
     isAuth: boolean
+    isRegisterSuccess: boolean
   }
 }
 
