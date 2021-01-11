@@ -22,6 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.11",
+    "redux-thunk": "^2.3.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
     "uuid": "^8.3.1"

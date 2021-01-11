@@ -25,9 +25,9 @@ const App: FC = () => {
         )}
         {!isAuth && (
           <Switch>
-            <Route path="/" component={AuthPage} />
-            <Route path="/auth" component={AuthPage} />
-            <Route path="/register" component={RegisterPage} />
+            <Route path="/" component={AuthPage} exact />
+            <Route path="/register" component={RegisterPage} exact />
+            <Route path="/auth" component={AuthPage} exact />
           </Switch>
         )}
       </div>
