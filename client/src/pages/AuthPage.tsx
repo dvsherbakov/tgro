@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, FC } from 'react'
 import { AuthForm } from '../components/Auth/Auth'
 
-export const AuthPage: React.FC = () => {
+export const AuthPage: FC = () => {
   return (
     <Fragment>
       <AuthForm />

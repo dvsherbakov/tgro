@@ -89,3 +89,29 @@ export const authThunk = (data: IAuthThunk) => async (
     dispatch(authFailAction())
   }
 }
+
+export const updateThunk = () => async (
+  dispatch: Dispatch<AuthActionTypes>
+) => {
+  try {
+    const tkns = localStorage.getItem('tokens')
+    if (tkns) {
+      const { refresh } = JSON.parse(tkns)
+      const api = new Api({ refreshToken: refresh })
+      const resp = await api.refresh()
+      if (resp.status === 200) {
+        const { data } = resp
+        localStorage.setItem(
+          'tokens',
+          JSON.stringify({
+            token: data.accessToken,
+            refresh: data.refreshToken,
+          })
+        )
+        dispatch(authSuccessAction())
+      } else dispatch(authFailAction())
+    } else dispatch(authFailAction())
+  } catch (e) {
+    dispatch(authFailAction())
+  }
+}

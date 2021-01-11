@@ -15,10 +15,8 @@ export interface IToken {
 }
 
 export interface ITokensInterface {
-  data: {
-    accessToken?: IToken
-    refreshToken?: IToken
-  }
+  accessToken?: IToken
+  refreshToken?: IToken
 }
 
 export interface IRegisterRequestConfig {

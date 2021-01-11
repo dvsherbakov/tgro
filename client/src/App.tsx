@@ -1,17 +1,26 @@
-import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
+import React, { FC, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import { Header } from './components/Header/Header'
+import Header from './components/Header'
 import { selectors } from './features/auth'
-import { Navbar } from './components/Navbar/Navbar'
+import Navbar from './components/Navbar'
 import { About } from './pages/About'
 import { AuthPage } from './pages/AuthPage'
 import { Home } from './pages/Home'
 import RegisterPage from './pages/RegisterPage'
+import { ProfilePage } from './pages/ProfilePage'
+import { updateThunk } from './features/auth/actions'
 
 const App: FC = () => {
   const isAuth = useSelector(selectors.isAuthenticate)
   const isRegisterSuccess = useSelector(selectors.isRegisterSuccess)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(updateThunk())
+    return () => {}
+  }, [])
+
   return (
     <BrowserRouter>
       <Header />
@@ -21,6 +30,7 @@ const App: FC = () => {
           <Switch>
             <Route path="/auth" component={Home} exact />
             <Route path="/" component={Home} exact />
+            <Route path="/profile" component={ProfilePage} exact />
             <Route path="/about" component={About} />
           </Switch>
         )}

@@ -10,17 +10,21 @@ export const Navbar: React.FC = () => {
 
   const links = isAuth ? (
     <Fragment>
-      <NavLink to="/" className="brand-logo">
-        Приложение
-      </NavLink>
       <ul id="nav-mobile" className="menu">
         <li>
-          <NavLink to="/home" activeClassName="active-link">
+          <NavLink to="/" activeClassName="active-link">
             Главная
           </NavLink>
         </li>
         <li>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/profile" activeClassName="active-link">
+            Профиль
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about" activeClassName="active-link">
+            About
+          </NavLink>
         </li>
       </ul>
     </Fragment>

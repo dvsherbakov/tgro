@@ -73,6 +73,11 @@ export interface IAuthThunk {
   password: string
 }
 
+export interface IUpdateThunk {
+  token: string
+  refreshToken: string
+}
+
 export type RegisterFailAction = {
   type: typeof REGISTER_FAIL_AUTH
 }
