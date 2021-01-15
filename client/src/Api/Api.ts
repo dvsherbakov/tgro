@@ -107,4 +107,8 @@ export default class Api {
       refreshToken: this.refreshToken,
     })
   }
+
+  async my() {
+    return this.client.post('/my')
+  }
 }

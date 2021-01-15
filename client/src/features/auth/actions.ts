@@ -81,6 +81,8 @@ export const authThunk = (data: IAuthThunk) => async (
         'tokens',
         JSON.stringify({ token: api.token, refresh: api.refreshToken })
       )
+      const my = await api.my()
+      console.log('My Andswer', my)
       dispatch(authSuccessAction())
     } else {
       dispatch(authFailAction())
@@ -108,6 +110,8 @@ export const updateThunk = () => async (
             refresh: data.refreshToken,
           })
         )
+        const my = await api.my()
+        console.log('My Andswer', my)
         dispatch(authSuccessAction())
       } else dispatch(authFailAction())
     } else dispatch(authFailAction())

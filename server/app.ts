@@ -7,6 +7,7 @@ import { todoRoutes } from './todo.controller'
 import { authRoutes } from './auth.controllet'
 import { userRoutes } from './user.controller'
 import { OrganizationRouter } from './organization.controller'
+import { myRoutes } from './my.controller'
 
 const app = express()
 app.use(cors())
@@ -17,5 +18,6 @@ app.use(todoRoutes)
 app.use(authRoutes)
 app.use(userRoutes)
 app.use(OrganizationRouter)
+app.use(myRoutes)
 
 export { app }
