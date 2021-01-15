@@ -82,7 +82,7 @@ export const authThunk = (data: IAuthThunk) => async (
         JSON.stringify({ token: api.token, refresh: api.refreshToken })
       )
       const my = await api.my()
-      console.log('My Andswer', my)
+      console.log('My auth Answer', my)
       dispatch(authSuccessAction())
     } else {
       dispatch(authFailAction())
@@ -98,8 +98,8 @@ export const updateThunk = () => async (
   try {
     const tkns = localStorage.getItem('tokens')
     if (tkns) {
-      const { refresh } = JSON.parse(tkns)
-      const api = new Api({ refreshToken: refresh })
+      const { refresh, token } = JSON.parse(tkns)
+      const api = new Api({ refreshToken: refresh, token })
       const resp = await api.refresh()
       if (resp.status === 200) {
         const { data } = resp
@@ -111,7 +111,7 @@ export const updateThunk = () => async (
           })
         )
         const my = await api.my()
-        console.log('My Andswer', my)
+        console.log('My Andwer', my.data)
         dispatch(authSuccessAction())
       } else dispatch(authFailAction())
     } else dispatch(authFailAction())
