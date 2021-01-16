@@ -68,6 +68,13 @@ export default class Api {
         const { data } = this.refreshRequest
         this.token = data.accessToken?.id
         this.refreshToken = data.refreshToken?.id
+        localStorage.setItem(
+          'tokens',
+          JSON.stringify({
+            token: this.token,
+            refresh: this.refreshToken,
+          })
+        )
         const newRequest = { ...error.config, retry: true }
         this.refreshRequest = null
         return this.client(newRequest)
