@@ -8,6 +8,7 @@ import {
 import { Request, Response, Router, NextFunction } from 'express'
 import { User  } from './user.model'
 import { Token, IToken } from './token.model'
+import {check, validationResult} from 'express-validator'
 import * as config from 'config'
 
 const secret: Secret = config.get('jwt.secret')
@@ -61,8 +62,17 @@ authRoutes.get(
   }
 )
 
-authRoutes.post('/api/register', async (req: Request, res: Response) => {
+authRoutes.post('/api/register', 
+[
+  check('email', 'input correct email').isEmail(),
+  check('password', 'password is short').isLength({min: 5})
+],
+async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty) {
+      return res.status(400).json({errors:errors.array, message:'incorrect creditance'})
+    }
     const { email, password, firstName, middleName, lastName } = req.body
     const candidate = await User.findOne({ email })
     if (candidate) {
