@@ -6,8 +6,9 @@ import { requestLoggerMiddleware } from './request.logger.middleware'
 import { todoRoutes } from './todo.controller'
 import { authRoutes } from './auth.controllet'
 import { userRoutes } from './user.controller'
-import { OrganizationRouter } from './organization.controller'
+import { organizationRouter } from './organization.controller'
 import { myRoutes } from './my.controller'
+import { adressRouter } from './adress.controller'
 
 const app = express()
 app.use(cors())
@@ -17,7 +18,8 @@ app.use(requestLoggerMiddleware)
 app.use(todoRoutes)
 app.use(authRoutes)
 app.use(userRoutes)
-app.use(OrganizationRouter)
+app.use(organizationRouter)
 app.use(myRoutes)
+app.use(adressRouter)
 
 export { app }

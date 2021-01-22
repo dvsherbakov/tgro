@@ -16,7 +16,7 @@ export const AdressSchema = new Schema({
   additional: String,
 })
 
-export const Adress: Model<IAdressModel> = model<IAdressModel>(
+export const AdressModel: Model<IAdressModel> = model<IAdressModel>(
   'Adress',
   AdressSchema
 )

@@ -1,14 +1,15 @@
 import * as express from 'express'
 import { Organization } from './organizaiton.model'
-import { Adress, IAdressModel } from './adress.model'
-export const OrganizationRouter = express.Router()
+import { AdressModel, IAdressModel } from './adress.model'
 
-OrganizationRouter.get(
+const organizationRouter = express.Router()
+
+organizationRouter.get(
   '/api/org',
   async (
-    req: express.Request,
+    _req: express.Request,
     resp: express.Response,
-    next: express.NextFunction
+    _next: express.NextFunction
   ) => {
     try {
       const orgs = await Organization.find({})
@@ -21,21 +22,21 @@ OrganizationRouter.get(
   }
 )
 
-OrganizationRouter.post(
+organizationRouter.post(
   '/api/org',
   async (
     req: express.Request,
     resp: express.Response,
-    next: express.NextFunction
+    _next: express.NextFunction
   ) => {
     try {
       let adr: IAdressModel
       const { name, adress } = req.body
-      let adrCandidate = await Adress.findOne(adress)
+      let adrCandidate = await AdressModel.findOne(adress)
       if (adrCandidate) {
         adr = adrCandidate
       } else {
-        adr = new Adress(adress)
+        adr = new AdressModel(adress)
         await adr.save()
       }
       const org = new Organization({ name, adress: adr })
@@ -47,3 +48,5 @@ OrganizationRouter.post(
     }
   }
 )
+
+export { organizationRouter }
