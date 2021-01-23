@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, Router } from 'express'
 import authMiddleware from './auth.middleware'
 import { AdressModel } from './adress.model'
+import { check, validationResult } from 'express-validator'
 
 const adressRouter = Router()
 
@@ -13,13 +14,21 @@ adressRouter.get(
 
 adressRouter.post(
   '/api/adress',
+  [check('city', 'city is required').exists()],
   authMiddleware,
-  async (req: Request, resp: Response, next: NextFunction) => {
+  async (req: Request, resp: Response, _next: NextFunction) => {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return resp.status(400).json({
+          errors: errors.array(),
+          message: 'Некорректные данные при регистрации',
+        })
+      }
       const { city, street, home, additional } = req.body
-      console.log(city)
-      //const item = new AdressModel({ city, street, home, additional })
-      //item.save()
+      console.log(city, street, home, additional)
+      const item = new AdressModel({ city, street, home, additional })
+      item.save()
       resp.status(200).json({ message: 'test post ok' })
     } catch (e) {
       resp

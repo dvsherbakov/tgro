@@ -51,7 +51,7 @@ authRoutes.get(
   async (
     req: Request,
     resp: Response,
-    next: NextFunction
+    _next: NextFunction
   ) => {
     try {
       resp.status(200).json({message: 'Test passwd'})
@@ -65,7 +65,8 @@ authRoutes.get(
 authRoutes.post('/api/register', 
 [
   check('email', 'input correct email').isEmail(),
-  check('password', 'password is short').isLength({min: 5})
+  check('password', 'password is short').isLength({min: 5}),
+  check('firstName', 'firstName is required').exists()
 ],
 async (req: Request, res: Response) => {
   try {

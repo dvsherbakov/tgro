@@ -11,7 +11,7 @@ userRoutes.get(
   async (
     req: express.Request,
     res: express.Response,
-    next: express.NextFunction
+    _next: express.NextFunction
   ) => {
     const userId = req.params.id
 
@@ -31,9 +31,9 @@ userRoutes.get(
   '/api/users',
   AuthMiddleware,
   async (
-    req: express.Request,
+    _req: express.Request,
     res: express.Response,
-    next: express.NextFunction
+    _next: express.NextFunction
   ) => {
     const users = await User.find({})
     if (!users) {
