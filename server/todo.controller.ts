@@ -24,7 +24,7 @@ todoRoutes.post(
   async (req: Request, resp: Response, next: NextFunction) => {
     //console.log(req.body)
     const description = req.body['description']
-    const item = new TodoModel({ description: description })
+    const item = new TodoModel({ description })
     await item.save()
     resp.status(200).json({ message: 'sucsesfully added' })
   }

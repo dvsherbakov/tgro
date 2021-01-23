@@ -15,7 +15,17 @@ adressRouter.post(
   '/api/adress',
   authMiddleware,
   async (req: Request, resp: Response, next: NextFunction) => {
-    resp.status(200).json({ message: 'test post ok' })
+    try {
+      const { city, street, home, additional } = req.body
+      console.log(city)
+      //const item = new AdressModel({ city, street, home, additional })
+      //item.save()
+      resp.status(200).json({ message: 'test post ok' })
+    } catch (e) {
+      resp
+        .status(500)
+        .json({ message: 'server error, adress.controller', error: e })
+    }
   }
 )
 
