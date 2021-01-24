@@ -6,10 +6,10 @@ import {
   lastNameAction,
   passwdAction,
   registerThunk,
-} from '../../features/auth/actions'
-import { selectors } from '../../features/auth'
+} from '../../../features/auth/actions'
+import { selectors } from '../../../features/auth'
 
-import '../Auth/auth.css'
+import '../styles/auth.css'
 
 export function Register() {
   const dispatch = useDispatch()

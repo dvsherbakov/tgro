@@ -1,5 +1,5 @@
 import React, { Fragment, FC } from 'react'
-import { AuthForm } from '../components/Auth/Auth'
+import { AuthForm } from '../components/Forms/Auth/Auth'
 
 export const AuthPage: FC = () => {
   return (

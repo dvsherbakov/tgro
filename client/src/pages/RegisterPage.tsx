@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react'
-import RegisterForm from '../components/Register'
+import RegisterForm from '../components/Forms/Register'
 
 const RegisterPage: FC = () => {
   return (

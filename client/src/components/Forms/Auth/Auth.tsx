@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { emailAction, passwdAction, selectors } from '../../features/auth'
-import { authThunk } from '../../features/auth/actions'
-import './auth.css'
+import { emailAction, passwdAction, selectors } from '../../../features/auth'
+import { authThunk } from '../../../features/auth/actions'
+import '../styles/auth.css'
 
 export const AuthForm: FC = () => {
   const dispatch = useDispatch()
