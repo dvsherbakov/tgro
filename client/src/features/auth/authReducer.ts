@@ -60,8 +60,11 @@ function authReducer(
     case REGISTER_FAIL_AUTH:
       return { ...state, isRegisterSuccess: false }
     case MY_SUCCESS:
-      console.log((<MyAction>action).payload)
-      return state
+      return {
+        ...state,
+        firstName: (<MyAction>action).payload.firstName,
+        lastName: (<MyAction>action).payload.lastName,
+      }
     default:
       return state
   }

@@ -19,7 +19,7 @@ export const AuthForm: FC = () => {
       <h4>Авторизуйтесь:</h4>
       <div className="auth__group">
         <input
-          id="input-1"
+          id="email-input"
           className="auth__input"
           type="email"
           value={email}
@@ -28,7 +28,7 @@ export const AuthForm: FC = () => {
           }}
           placeholder=" "
         />
-        <label htmlFor="input-1" className="auth__label">
+        <label htmlFor="email-input" className="auth__label">
           email
         </label>
       </div>

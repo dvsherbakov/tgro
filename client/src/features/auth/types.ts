@@ -12,8 +12,8 @@ import {
 } from './actionTypes'
 
 export type ComplexUserPayload = {
-  firstName : string;
-  lastName: string;
+  firstName: string
+  lastName: string
 }
 
 export type LoginAction = {
@@ -49,8 +49,8 @@ export type LogoutAction = {
 }
 
 export type MyAction = {
-  type: typeof MY_SUCCESS,
-  payload: any
+  type: typeof MY_SUCCESS
+  payload: ComplexUserPayload
 }
 
 export type AuthActionTypes =
