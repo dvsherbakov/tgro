@@ -15,7 +15,7 @@ userRoutes.get(
   ) => {
     const userId = req.params.id
 
-    const user = await User.findById(userId)
+    const user = await User.findById(userId).populate('organization')
     if (!user) {
       res.status(500).json({ message: 'User does not exists!' })
     }
@@ -35,7 +35,7 @@ userRoutes.get(
     res: express.Response,
     _next: express.NextFunction
   ) => {
-    const users = await User.find({})
+    const users = await User.find({}).populate('organization')
     if (!users) {
       res.status(500).json({ message: 'Users not found' })
     }

@@ -1,4 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose'
+import { IOrganizationInterface } from './organizaiton.model'
 
 export interface IUserInterface {
   email: string;
@@ -6,6 +7,7 @@ export interface IUserInterface {
   middleName?: string;
   lastName: string;
   password: string;
+  organization?: { type: Schema.Types.ObjectId, ref: 'Organization' };
 }
 
 export interface IUserModel extends Document, IUserInterface {}
