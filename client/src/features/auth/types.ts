@@ -6,9 +6,15 @@ import {
   LOGIN_AUTH,
   LOGOUT_AUTH,
   PASSWD_AUTH,
+  MY_SUCCESS,
   REGISTER_FAIL_AUTH,
   REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
+
+export type ComplexUserPayload = {
+  firstName : string;
+  lastName: string;
+}
 
 export type LoginAction = {
   type: typeof LOGIN_AUTH
@@ -42,10 +48,16 @@ export type LogoutAction = {
   type: typeof LOGOUT_AUTH
 }
 
+export type MyAction = {
+  type: typeof MY_SUCCESS,
+  payload: any
+}
+
 export type AuthActionTypes =
   | LoginAction
   | LoginFailAuth
   | LogoutAction
+  | MyAction
   | SetPasswdAction
   | SetFirstNameAction
   | SetLastNameAction

@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose'
-import { IAdressInterface, AdressSchema } from './adress.model'
+import { IAdressInterface } from './adress.model'
 
 export interface IOrganizationInterface {
   name: string;
@@ -10,7 +10,7 @@ export interface IOrganizationModel extends Document, IOrganizationInterface {}
 
 export const OrganizationSchema = new Schema({
   name: { type: String, unique: true },
-  adress: AdressSchema,
+  adress: { type: Schema.Types.ObjectId, ref: 'Adress' },
 })
 
 export const Organization: Model<IOrganizationModel> = model<IOrganizationModel>(

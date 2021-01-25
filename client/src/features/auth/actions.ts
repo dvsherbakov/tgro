@@ -6,6 +6,7 @@ import {
   LAST_NAME_AUTH,
   FAIL_AUTH,
   LOGIN_AUTH,
+  MY_SUCCESS,
   PASSWD_AUTH,
   REGISTER_FAIL_AUTH,
   REGISTER_SUCCESS_AUTH,
@@ -13,6 +14,7 @@ import {
 import {
   LoginAction,
   LoginFailAuth,
+  MyAction,
   SetEmailAction,
   SetFirstNameAction,
   SetLastNameAction,
@@ -57,6 +59,21 @@ export const authSuccessAction = (): LoginAction => ({
   type: LOGIN_AUTH,
 })
 
+export const mySuccessAcrion = (data: any): MyAction => ({
+  type: MY_SUCCESS,
+  payload: data,
+})
+
+export const myThunk = () => async (dispatch: Dispatch<AuthActionTypes>) => {
+  const tkns = localStorage.getItem('tokens')
+  if (tkns) {
+    const { refresh, token } = JSON.parse(tkns)
+    const api = new Api({ refreshToken: refresh, token })
+    const { data } = await api.my()
+    dispatch(mySuccessAcrion(data))
+  } else dispatch(authFailAction())
+}
+
 export const registerThunk = (data: IRegisterThunk) => async (
   dispatch: Dispatch<RegisterActionsType>
 ) => {
@@ -81,8 +98,6 @@ export const authThunk = (data: IAuthThunk) => async (
         'tokens',
         JSON.stringify({ token: api.token, refresh: api.refreshToken })
       )
-      const my = await api.my()
-      console.log('My auth Answer', my)
       dispatch(authSuccessAction())
     } else {
       dispatch(authFailAction())
@@ -110,8 +125,6 @@ export const updateThunk = () => async (
             refresh: data.refreshToken,
           })
         )
-        const my = await api.my()
-        console.log('My Andwer', my.data)
         dispatch(authSuccessAction())
       } else dispatch(authFailAction())
     } else dispatch(authFailAction())

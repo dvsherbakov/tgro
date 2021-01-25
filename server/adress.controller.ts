@@ -7,8 +7,9 @@ const adressRouter = Router()
 
 adressRouter.get(
   '/api/adress',
-  async (req: Request, resp: Response, next: NextFunction) => {
-    resp.status(200).json({ message: 'test get ok' })
+  async (_req: Request, resp: Response, _next: NextFunction) => {
+    const adresses = await AdressModel.find({})
+    resp.status(200).json(adresses)
   }
 )
 

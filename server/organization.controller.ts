@@ -12,7 +12,7 @@ organizationRouter.get(
     _next: express.NextFunction
   ) => {
     try {
-      const orgs = await Organization.find({})
+      const orgs = await Organization.find({}).populate('adress')
       if (orgs) {
         resp.status(200).json(orgs)
       } else resp.status(500).json({ message: 'Organization not found' })
@@ -32,14 +32,15 @@ organizationRouter.post(
     try {
       let adr: IAdressModel
       const { name, adress } = req.body
-      let adrCandidate = await AdressModel.findOne(adress)
+      console.log(name, adress)
+      let adrCandidate = await await AdressModel.findById(adress)
       if (adrCandidate) {
         adr = adrCandidate
       } else {
         adr = new AdressModel(adress)
         await adr.save()
       }
-      const org = new Organization({ name, adress: adr })
+      const org = new Organization({ name, adress: adr._id })
       await org.save()
       resp.status(200).json({ message: 'recieved', organization: org })
     } catch (err) {

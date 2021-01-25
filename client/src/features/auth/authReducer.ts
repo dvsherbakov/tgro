@@ -6,6 +6,7 @@ import {
   LOGIN_AUTH,
   LOGOUT_AUTH,
   PASSWD_AUTH,
+  MY_SUCCESS,
   REGISTER_FAIL_AUTH,
   REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
@@ -15,6 +16,7 @@ import {
   SetPasswdAction,
   SetFirstNameAction,
   SetLastNameAction,
+  MyAction,
 } from './types'
 
 export interface IDefaultAuthState {
@@ -57,6 +59,9 @@ function authReducer(
       return { ...state, isRegisterSuccess: true }
     case REGISTER_FAIL_AUTH:
       return { ...state, isRegisterSuccess: false }
+    case MY_SUCCESS:
+      console.log((<MyAction>action).payload)
+      return state
     default:
       return state
   }
