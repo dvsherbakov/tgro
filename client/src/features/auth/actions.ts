@@ -25,6 +25,7 @@ import {
   RegisterSuccessAction,
   IAuthThunk,
   AuthActionTypes,
+  ComplexUserPayload,
 } from './types'
 
 export const emailAction = (email: string): SetEmailAction => {
@@ -59,7 +60,7 @@ export const authSuccessAction = (): LoginAction => ({
   type: LOGIN_AUTH,
 })
 
-export const mySuccessAcrion = (data: any): MyAction => ({
+export const mySuccessAcrion = (data: ComplexUserPayload): MyAction => ({
   type: MY_SUCCESS,
   payload: data,
 })

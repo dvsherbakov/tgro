@@ -9,7 +9,7 @@ import { AuthPage } from './pages/AuthPage'
 import { Home } from './pages/Home'
 import RegisterPage from './pages/RegisterPage'
 import { ProfilePage } from './pages/ProfilePage'
-import { updateThunk } from './features/auth/actions'
+import { myThunk, updateThunk } from './features/auth/actions'
 
 const App: FC = () => {
   const isAuth = useSelector(selectors.isAuthenticate)
@@ -18,6 +18,7 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(updateThunk())
+    dispatch(myThunk())
     return () => {}
   }, [])
 
