@@ -14,6 +14,7 @@ import {
 export type ComplexUserPayload = {
   firstName: string
   lastName: string
+  email: string
 }
 
 export type LoginAction = {

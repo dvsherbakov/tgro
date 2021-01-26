@@ -64,6 +64,7 @@ function authReducer(
         ...state,
         firstName: (<MyAction>action).payload.firstName,
         lastName: (<MyAction>action).payload.lastName,
+        email: (<MyAction>action).payload.email,
       }
     default:
       return state

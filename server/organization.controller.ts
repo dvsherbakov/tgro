@@ -32,8 +32,8 @@ organizationRouter.post(
     try {
       let adr: IAdressModel
       const { name, adress } = req.body
-      console.log(name, adress)
-      let adrCandidate = await await AdressModel.findById(adress)
+
+      let adrCandidate = await AdressModel.findById(adress)
       if (adrCandidate) {
         adr = adrCandidate
       } else {

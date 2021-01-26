@@ -118,4 +118,12 @@ export default class Api {
   async my() {
     return this.client.post('/my')
   }
+
+  async organizationsList() {
+    const data = await this.client.get('/org')
+    if (data.status === 200) {
+      return data.data
+    }
+    return []
+  }
 }
