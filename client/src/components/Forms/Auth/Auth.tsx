@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { emailAction, passwdAction, selectors } from '../../../features/auth'
-import { authThunk } from '../../../features/auth/actions'
+import { authThunk, myThunk } from '../../../features/auth/actions'
 import '../styles/auth.css'
 
 export const AuthForm: FC = () => {
@@ -12,6 +12,7 @@ export const AuthForm: FC = () => {
 
   const getAuthHandler = () => {
     dispatch(authThunk(data))
+    dispatch(myThunk())
   }
 
   return (
