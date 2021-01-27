@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Api from '../../../Api/Api'
+import { selectors } from '../../../features/auth'
 
 import './selectOrganization.css'
 
@@ -20,6 +22,7 @@ export const SelectOrganization = () => {
   const [organizations, setOrganizations] = useState<IOrganizationInterface[]>(
     []
   )
+  const organization = useSelector(selectors.getOrganization)
 
   useEffect(() => {
     const tkns = localStorage.getItem('tokens')
@@ -36,19 +39,30 @@ export const SelectOrganization = () => {
     setEditMode(!isEditMode)
   }
 
+  const handleSelect = () => {
+    setEditMode(false)
+  }
+
   return (
     <>
       <div className="selector-group">
         <div>Организация:</div>
-        <div>Selected</div>
+        <div>{organization || 'Не выбрана'}</div>
         <button type="button" onClick={handleEditMode}>
           *
         </button>
       </div>
       {isEditMode && (
-        <div>
+        <div className="orgselector__container">
           {organizations.map((org, idx) => (
-            <div key={idx.toString()}>
+            <div
+              key={idx.toString()}
+              tabIndex={idx}
+              className="orgselector__item"
+              onClick={handleSelect}
+              onKeyDown={handleSelect}
+              role="button"
+            >
               {org.name}: <span>{org.adress.city}</span>{' '}
               <span>{org.adress.street}</span> <span>{org.adress.home}</span>
               <div>{org.adress.additional}</div>

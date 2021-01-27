@@ -27,7 +27,7 @@ adressRouter.post(
         })
       }
       const { city, street, home, additional } = req.body
-      console.log(city, street, home, additional)
+
       const item = new AdressModel({ city, street, home, additional })
       item.save()
       resp.status(200).json({ message: 'test post ok' })

@@ -11,9 +11,16 @@ import {
   REGISTER_SUCCESS_AUTH,
 } from './actionTypes'
 
+export type OrganizationPayload = {
+  name: string
+  adress: string
+}
+
 export type ComplexUserPayload = {
   firstName: string
   lastName: string
+  middleName?: string
+  organizaiton?: OrganizationPayload
   email: string
 }
 
@@ -69,6 +76,8 @@ export interface AuthState {
     passwd: string
     firstName: string
     lastName: string
+    middleName: string
+    organization: string
     isAuth: boolean
     isRegisterSuccess: boolean
   }

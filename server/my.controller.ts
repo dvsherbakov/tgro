@@ -16,9 +16,8 @@ myRoutes.post('/api/my', authMiddleware, async (req: Request, res: Response) => 
   const token = req.get('Authorization').replace('Bearer', '')
   try {
     const {userId} = jwt_decode<myJwt>(token)
-    const user = await User.findById(userId)
-    console.log('user:', user)
-    res.status(200).json({ message: 'my controller say ok', firstName: user.firstName, middleName: user.middleName, lastName: user.lastName, email: user.email }) 
+    const user = await User.findById(userId).populate('organization')
+    res.status(200).json({ message: 'my controller say ok', id: user._id, firstName: user.firstName, middleName: user.middleName, lastName: user.lastName, email: user.email, organizaiton: user.organization }) 
   } catch (e) {
     res.status(201).json({ message: e.message })
   }

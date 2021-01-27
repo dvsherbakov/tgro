@@ -33,7 +33,7 @@ organizationRouter.post(
       let adr: IAdressModel
       const { name, adress } = req.body
 
-      let adrCandidate = await AdressModel.findById(adress)
+      const adrCandidate = await AdressModel.findById(adress)
       if (adrCandidate) {
         adr = adrCandidate
       } else {
@@ -44,7 +44,7 @@ organizationRouter.post(
       await org.save()
       resp.status(200).json({ message: 'recieved', organization: org })
     } catch (err) {
-      console.log(err)
+      console.error(err)
       resp.status(500).json({ message: `Internal error ${err}` })
     }
   }

@@ -19,6 +19,7 @@ const UserSchema = new Schema(
     middleName: String,
     lastName: { type: String, required: true },
     password: { type: String, required: true },
+    organization: { type: Schema.Types.ObjectId, ref: 'Organization' },
   },
   { timestamps: true, autoIndex: true }
 )

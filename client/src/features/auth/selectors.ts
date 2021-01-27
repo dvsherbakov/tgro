@@ -4,6 +4,7 @@ export const getEmail = (state: AuthState) => state.auth.email
 export const getPasswd = (state: AuthState) => state.auth.passwd
 export const getFirstName = (state: AuthState) => state.auth.firstName
 export const getLastName = (state: AuthState) => state.auth.lastName
+export const getOrganization = (state: AuthState) => state.auth.organization
 export const isAuthenticate = (state: AuthState) => state.auth.isAuth
 export const isRegisterSuccess = (state: AuthState) =>
   state.auth.isRegisterSuccess
@@ -16,4 +17,6 @@ export const getComplexAuthData = (state: AuthState) => ({
   password: state.auth.passwd,
   firstName: state.auth.firstName,
   lastName: state.auth.lastName,
+  middleName: state.auth.middleName,
+  organizaiton: state.auth.organization,
 })

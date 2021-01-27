@@ -22,7 +22,6 @@ todoRoutes.get(
 todoRoutes.post(
   '/api/todo',
   async (req: Request, resp: Response, next: NextFunction) => {
-    //console.log(req.body)
     const description = req.body['description']
     const item = new TodoModel({ description })
     await item.save()

@@ -1,0 +1,10 @@
+.header__main {
+  min-width: 100px;
+}
+
+.header__main img {
+  opacity: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

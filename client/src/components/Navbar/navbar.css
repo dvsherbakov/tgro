@@ -1,6 +1,7 @@
 .menu ul,
 .menu li {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -24,4 +25,9 @@
 
 .menu li + li {
   padding-left: 10px;
+}
+
+nav.menu {
+  background-color: #03a9f4;
+  max-width: 100vw;
 }

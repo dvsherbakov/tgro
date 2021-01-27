@@ -22,8 +22,10 @@ import {
 export interface IDefaultAuthState {
   firstName: string
   lastName: string
+  middleName: string
   email: string
   passwd: string
+  organization: string
   isAuth: boolean
   isRegisterSuccess: boolean
 }
@@ -31,8 +33,10 @@ export interface IDefaultAuthState {
 const initialState: IDefaultAuthState = {
   firstName: '',
   lastName: '',
+  middleName: '',
   email: '',
   passwd: '',
+  organization: '',
   isAuth: false,
   isRegisterSuccess: false,
 }
@@ -64,7 +68,9 @@ function authReducer(
         ...state,
         firstName: (<MyAction>action).payload.firstName,
         lastName: (<MyAction>action).payload.lastName,
+        middleName: (<MyAction>action).payload.middleName,
         email: (<MyAction>action).payload.email,
+        organization: (<MyAction>action).payload.organizaiton?.name,
       }
     default:
       return state

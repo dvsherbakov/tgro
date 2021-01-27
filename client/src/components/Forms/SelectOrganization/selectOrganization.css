@@ -1,3 +1,17 @@
 .selector-group {
   display: flex;
 }
+
+.orgselector__container {
+  padding: 15px;
+  background-color: #424242;
+  color: aliceblue;
+}
+
+.orgselector__container > :not(:last-child) {
+  border-bottom: 2px solid bisque;
+}
+
+.orgselector__item:hover {
+  background-color: #878787;
+}
